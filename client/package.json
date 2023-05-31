@@ -1,22 +1,21 @@
 {
-  "name": "@web-auto-notify/vite",
+  "name": "@web-auto-notify/client",
   "type": "module",
   "version": "1.0.0",
-  "description": "Vite plugin for detect web page updates and notify.",
+  "description": "Detect web page updates and notify",
   "author": "",
   "license": "",
   "homepage": "https://gitee.com/bluelightsky/web-auto-notify-plugin",
   "repository": {
     "type": "git",
     "url": "https://gitee.com/bluelightsky/web-auto-notify-plugin",
-    "directory": "packages/vite-plugin"
+    "directory": "packages/client"
   },
   "bugs": {
     "url": "https://gitee.com/bluelightsky/web-auto-notify-plugin/issues"
   },
   "keywords": [
-    "vite",
-    "vite-plugin"
+    "web-auto-notify"
   ],
   "sideEffects": false,
   "exports": {
@@ -34,13 +33,11 @@
   ],
   "scripts": {
     "start": "tsx src/index.ts",
-    "dev": "tsup --watch",
-    "build": "tsup"
-  },
-  "peerDependencies": {
-    "vite": ">4.0.0 || ^3.0.0 || ^2.0.0"
+    "build": "tsup && tsup --config tsup.config.ts",
+    "dev": "tsup --watch"
   },
   "devDependencies": {
+    "@swc/core": "^1.3.61",
     "tsup": "^6.7.0"
   }
 }

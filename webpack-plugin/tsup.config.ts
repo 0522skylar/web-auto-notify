@@ -12,7 +12,7 @@ export default defineConfig((options) => { // The options here is derived from C
     clean: true,
     dts: true,
     format: ['cjs', 'esm'],
-    minify: !options.watch
+    minify: !options.watch,
     // after bundle success, run script, copy inject file from @plugin-web-update-notification/core
     // onSuccess: `node ${resolve('node_modules', pkgName, 'dist', 'pluginBuildScript.js')}`,
   }

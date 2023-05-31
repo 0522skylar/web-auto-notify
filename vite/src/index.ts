@@ -1,7 +1,7 @@
 // import { readFileSync } from 'fs'
 // import { resolve } from 'path'
 import type { Plugin, ResolvedConfig } from 'vite'
-import type { Options } from './core'
+import type { Options } from '../../core/src/index'
 import {
   DIRECTORY_NAME,
   // INJECT_SCRIPT_FILE_NAME,
@@ -13,7 +13,7 @@ import {
   // getFileHash,
   getVersion,
   // get__Dirname,
-} from './core'
+} from '../../core/src/index'
 
 /**
  * It injects the hash into the HTML, and injects the notification anchor and the stylesheet and the

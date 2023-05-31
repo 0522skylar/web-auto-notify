@@ -1,7 +1,7 @@
 {
-  "name": "@web-auto-notify/client",
+  "name": "web-auto-notify-client",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Detect web page updates and notify",
   "author": "",
   "license": "",

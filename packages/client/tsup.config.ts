@@ -1,15 +1,14 @@
-// import { resolve } from 'path'
 import { defineConfig } from 'tsup'
-// import { pkgName } from '@plugin-web-update-notification/core'
 
 export default defineConfig((options) => { // The options here is derived from CLI flags.
   return {
     entry: {
       index: 'src/index.ts',
     },
-    target: 'es5',
+    target: 'es6',
     splitting: false,
     sourcemap: false,
+    dts: true,
     format: ['esm', 'iife'],
     minify: !options.watch,
   }

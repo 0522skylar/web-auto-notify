@@ -10,8 +10,9 @@ import {
   NOTIFICATION_REFRESH_BTN_CLASS_NAME
 } from "./constants";
 import presetLocaleData from "./locale";
+import './index.css'
 
-
+// import './shim.d.ts'
 declare global {
   interface Window {
     /** version number */

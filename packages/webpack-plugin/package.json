@@ -1,0 +1,47 @@
+{
+  "name": "@web-auto-notify/webpack",
+  "type": "module",
+  "version": "1.0.1",
+  "description": "Webpack plugin for detect web page updates and notify.",
+  "author": "",
+  "license": "",
+  "homepage": "https://gitee.com/bluelightsky/web-auto-notify-plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/bluelightsky/web-auto-notify-plugin",
+    "directory": "packages/vite-plugin"
+  },
+  "bugs": {
+    "url": "https://gitee.com/bluelightsky/web-auto-notify-plugin/issues"
+  },
+  "keywords": [
+    "webpack",
+    "webpack-plugin"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "dev": "tsup --watch",
+    "build": "tsup"
+  },
+  "peerDependencies": {
+    "webpack": "^4.0.0 || ^5.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^6.7.0",
+    "webpack": "^5.0.0"
+  }
+}

@@ -8,14 +8,14 @@ const localeData: LocaleData = {
     dismissButtonText: "忽略"
   },
   zh_TW: {
-    title: "發現新版本",
-    description: "網頁更新啦！請刷新頁面後使用。",
+    title: "📢 發現新版本",
+    description: "⭐ 網頁更新啦！請刷新頁面後使用。",
     buttonText: "刷新",
     dismissButtonText: "忽略"
   },
   en_US: {
-    title: "Discover new version",
-    description: "A new version is available! Please refresh the page.",
+    title: "📢 Discover new version",
+    description: "⭐ A new version is available! Please refresh the page.",
     buttonText: "Refresh",
     dismissButtonText: "Dismiss"
   }

@@ -5,14 +5,14 @@
   "description": "Vite plugin for detect web page updates and notify.",
   "author": "",
   "license": "",
-  "homepage": "https://gitee.com/bluelightsky/web-auto-notify-plugin",
+  "homepage": "https://github.com/0522skylar/web-auto-notify",
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/bluelightsky/web-auto-notify-plugin",
+    "url": "https://github.com/0522skylar/web-auto-notify",
     "directory": "packages/vite-plugin"
   },
   "bugs": {
-    "url": "https://gitee.com/bluelightsky/web-auto-notify-plugin/issues"
+    "url": "https://github.com/0522skylar/web-auto-notify/issues"
   },
   "keywords": [
     "vite",

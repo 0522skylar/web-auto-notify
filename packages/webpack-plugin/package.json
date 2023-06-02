@@ -5,15 +5,6 @@
   "description": "Webpack plugin for detect web page updates and notify.",
   "author": "",
   "license": "",
-  "homepage": "https://gitee.com/bluelightsky/web-auto-notify-plugin",
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/bluelightsky/web-auto-notify-plugin",
-    "directory": "packages/vite-plugin"
-  },
-  "bugs": {
-    "url": "https://gitee.com/bluelightsky/web-auto-notify-plugin/issues"
-  },
   "keywords": [
     "webpack",
     "webpack-plugin"
@@ -30,7 +21,8 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "start": "tsx src/index.ts",

@@ -69,9 +69,9 @@ class WebUpdateNotificationPlugin {
 
   apply(compiler: Compiler) {
     /** inject script file hash */
-    let jsFileHash = ''
+    // let jsFileHash = ''
     /** inject css file hash */
-    let cssFileHash = ''
+    // let cssFileHash = ''
 
     const { publicPath } = compiler.options.output
     if (this.options.injectFileBase === undefined)
@@ -88,7 +88,7 @@ class WebUpdateNotificationPlugin {
       // const outputPath = compiler.outputPath
       const jsonFileContent = generateJSONFileContent(version, silence)
       // @ts-expect-error
-      compilation.assets[`${DIRECTORY_NAME}/${JSON_FILE_NAME}.json`] = {
+      compilation.assets[`${this.options.injectFileBase}${DIRECTORY_NAME}/${JSON_FILE_NAME}.json`] = {
         source: () => jsonFileContent,
         size: () => jsonFileContent.length,
       }

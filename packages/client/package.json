@@ -1,23 +1,14 @@
 {
   "name": "web-auto-notify-client",
   "type": "module",
-  "version": "1.0.3",
+  "version": "1.0.1",
   "description": "Detect web page updates and notify",
   "author": "",
   "license": "",
-  "homepage": "https://gitee.com/bluelightsky/web-auto-notify-plugin",
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/bluelightsky/web-auto-notify-plugin",
-    "directory": "packages/client"
-  },
-  "bugs": {
-    "url": "https://gitee.com/bluelightsky/web-auto-notify-plugin/issues"
-  },
   "keywords": [
     "web-auto-notify"
   ],
-  "sideEffects": false,
+  "sideEffects": true,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -29,11 +20,12 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "start": "tsx src/index.ts",
-    "build": "tsup && tsup --config tsup.config.ts",
+    "build": "tsup",
     "dev": "tsup --watch"
   },
   "devDependencies": {

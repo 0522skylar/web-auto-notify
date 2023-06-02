@@ -8,6 +8,7 @@ export default defineConfig((options) => { // The options here is derived from C
     target: 'es6',
     splitting: false,
     sourcemap: false,
+    injectStyle: true,
     dts: true,
     format: ['esm', 'iife'],
     minify: !options.watch,

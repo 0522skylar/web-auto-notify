@@ -2,8 +2,8 @@ import { LocaleData } from "./type";
 
 const localeData: LocaleData = {
   zh_CN: {
-    title: "发现新版本",
-    description: "网页更新啦！请刷新页面后使用。",
+    title: "📢 发现新版本",
+    description: "⭐ 网页更新啦！请刷新页面后使用。",
     buttonText: "刷新",
     dismissButtonText: "忽略"
   },

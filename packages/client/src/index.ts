@@ -23,6 +23,7 @@ declare global {
     __checkUpdateSetup__: (options: Options) => void;
     pluginWebUpdateNotice_: {
       locale?: string;
+      currentVersion?: string | undefined;
       /**
        * set language.
        * preset: zh_CN、zh_TW、en_US
@@ -94,6 +95,7 @@ function querySelector(selector: string) {
 }
 
 window.pluginWebUpdateNotice_ = {
+  currentVersion: undefined,
   checkUpdate: () => {},
   dismissUpdate,
   closeNotification,
@@ -132,15 +134,10 @@ function __checkUpdateSetup__(options: Options) {
         if (silence) return;
         latestVersion = versionFromServer;
         if (isFirstFetch) {
-          window.pluginWebUpdateNotice_version = latestVersion;
+          window.pluginWebUpdateNotice_.currentVersion = latestVersion;
           isFirstFetch = false;
         }
-        if (window.pluginWebUpdateNotice_version !== versionFromServer) {
-          console.log(
-            CUSTOM_UPDATE_EVENT_NAME,
-            versionFromServer,
-            window.pluginWebUpdateNotice_version
-          );
+        if (window.pluginWebUpdateNotice_.currentVersion !== versionFromServer) {
           // dispatch custom event
           document.body.dispatchEvent(
             new CustomEvent(CUSTOM_UPDATE_EVENT_NAME, {
@@ -151,11 +148,13 @@ function __checkUpdateSetup__(options: Options) {
               bubbles: true
             })
           );
-
+          window.pluginWebUpdateNotice_.currentVersion = latestVersion;
           const dismiss =
             localStorage.getItem(`${LOCAL_STORAGE_PREFIX}${versionFromServer}`) === "true";
           if (!hasShowSystemUpdateNotice && !hiddenDefaultNotification && !dismiss) {
             showNotification(options);
+          } else {
+            console.log('no show notification')
           }
         }
       })
@@ -187,7 +186,9 @@ function __checkUpdateSetup__(options: Options) {
       pollingCheck();
       if (checkOnWindowFocus) limitCheckSystemUpdate();
     }
-    if (document.visibilityState === "hidden") intervalTimer && clearInterval(intervalTimer);
+    if (document.visibilityState === "hidden") {
+      intervalTimer && clearInterval(intervalTimer);
+    }
   });
 
   // when page focus, check system update
@@ -224,7 +225,7 @@ function closeNotification() {
 function dismissUpdate() {
   try {
     closeNotification();
-    localStorage.setItem(`${LOCAL_STORAGE_PREFIX}${latestVersion}`, "true");
+    localStorage.setItem(`${LOCAL_STORAGE_PREFIX}${latestVersion}`, "true"); // 永远存在，不会删除，不太友好
   } catch (err) {
     console.error(err);
   }
@@ -299,7 +300,7 @@ function showNotification(options: Options) {
     if (customNotificationHTML) {
       notificationInnerHTML = customNotificationHTML;
     } else {
-      const { placement = "bottomRight", primaryColor, secondaryColor } = notificationConfig || {};
+      const { placement = "topRight", primaryColor, secondaryColor } = notificationConfig || {};
       const title = notificationProps?.title ?? getLocaleText(currentLocale, "title", localeData);
       const description =
         notificationProps?.description ?? getLocaleText(currentLocale, "description", localeData);

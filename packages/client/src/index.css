@@ -5,9 +5,9 @@
 }
 
 .plugin-web-update-notice-content {
-  background-color: #fff;
+  background-color: #ef404f;
   border-radius: 4px;
-  color: #000000d9;
+  color: #fff;
   box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
   padding: 8px 16px;
   line-height: 1.5715;
@@ -15,7 +15,7 @@
 }
 
 .plugin-web-update-notice-content-title {
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 4px;
   font-size: 14px;
   line-height: 24px;
@@ -44,5 +44,5 @@
   color: #1677ff;
 }
 .plugin-web-update-notice-dismiss-btn {
-  color: rgba(0, 0, 0, 0.25);
+  color: #f5f7fa;
 }

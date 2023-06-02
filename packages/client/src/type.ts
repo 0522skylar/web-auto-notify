@@ -48,7 +48,7 @@ export interface Options {
    */
   silence?: boolean;
   /**
-   * @deprecated
+   * @default ''
    */
   customNotificationHTML?: string;
   /** notificationProps have higher priority than locale */

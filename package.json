@@ -3,14 +3,14 @@
   "type": "module",
   "version": "1.0.1",
   "description": "web auto notify",
-  "author": "Skylar",
+  "author": "0522skylar",
   "license": "MIT",
-  "homepage": "https://gitee.com/bluelightsky/web-auto-notify-plugin",
+  "homepage": "https://github.com/0522skylar/web-auto-notify",
   "repository": {
     "type": "git",
-    "url": "git+https://gitee.com/bluelightsky/web-auto-notify-plugin"
+    "url": "git+https://github.com/0522skylar/web-auto-notify"
   },
-  "bugs": "https://gitee.com/bluelightsky/web-auto-notify-plugin/issues",
+  "bugs": "https://github.com/0522skylar/web-auto-notify/issues",
   "keywords": [
     "web-auto-notify-plugin"
   ],

@@ -13,10 +13,13 @@ export function webUpdateNotice(options: Options = {}): Plugin {
 
   const { versionType, customVersion, silence } = options
   let version = ''
-  if (versionType === 'custom')
+  if (versionType === 'custom') {
     version = getVersion(versionType, customVersion!)
-  else
+  }
+  else {
     version = getVersion(versionType!)
+  }
+    
 
   return {
     name: 'vue-vite-web-auto-notify',
@@ -25,13 +28,14 @@ export function webUpdateNotice(options: Options = {}): Plugin {
     configResolved(resolvedConfig: ResolvedConfig) {
       // 存储最终解析的配置
       viteConfig = resolvedConfig
-      if (options.injectFileBase === undefined)
+      if (options.injectFileBase === undefined) {
         options.injectFileBase = viteConfig.base
-
+      }
     },
     generateBundle(_, bundle = {}) {
-      if (!version)
+      if (!version) {
         return
+      }
       // inject version json file
       bundle[JSON_FILE_NAME] = {
         // @ts-expect-error: for Vite 3 support, Vite 4 has removed `isAsset` property

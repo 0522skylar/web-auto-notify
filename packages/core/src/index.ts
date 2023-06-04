@@ -64,12 +64,13 @@ export function getCustomVersion(version?: string) {
  */
 function checkRepoType() {
   const gitRepo = findUpSync('.git', { type: 'directory' })
-  if (gitRepo)
+  if (gitRepo) {
     return 'Git'
+  }
   const svnRepo = findUpSync('.svn', { type: 'directory' })
-  if (svnRepo)
+  if (svnRepo) {
     return 'SVN'
-
+  }
   return 'unknown'
 }
 

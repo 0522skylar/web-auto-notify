@@ -67,7 +67,9 @@ let intervalTimer: number | undefined;
 function limit(fn: any, delay: number) {
   let pending = false;
   return function(this: any, ...args: any[]) {
-    if (pending) return;
+    if (pending) {
+      return;
+    }
     pending = true;
     fn.apply(this, args);
     setTimeout(() => {
@@ -164,7 +166,9 @@ function __checkUpdateSetup__(options: Options) {
    * polling check system update
    */
   const pollingCheck = () => {
-    if (checkInterval > 0) intervalTimer = window.setInterval(checkSystemUpdate, checkInterval);
+    if (checkInterval > 0) {
+      intervalTimer = window.setInterval(checkSystemUpdate, checkInterval);
+    }
   };
   pollingCheck();
 
@@ -176,7 +180,9 @@ function __checkUpdateSetup__(options: Options) {
   window.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") {
       pollingCheck();
-      if (checkOnWindowFocus) limitCheckSystemUpdate();
+      if (checkOnWindowFocus) {
+        limitCheckSystemUpdate();
+      }
     }
     if (document.visibilityState === "hidden") {
       intervalTimer && clearInterval(intervalTimer);
@@ -185,7 +191,9 @@ function __checkUpdateSetup__(options: Options) {
 
   // when page focus, check system update
   window.addEventListener("focus", () => {
-    if (checkOnWindowFocus) limitCheckSystemUpdate();
+    if (checkOnWindowFocus) {
+      limitCheckSystemUpdate();
+    }
   });
 
   if (checkOnLoadFileError) {

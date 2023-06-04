@@ -22,15 +22,19 @@ class WebAutoNotifyPlugin {
 
   apply(compiler: Compiler) {
     const { publicPath } = compiler.options.output
-    if (this.options.injectFileBase === undefined)
+    if (this.options.injectFileBase === undefined) {
       this.options.injectFileBase = typeof publicPath === 'string' ? publicPath : '/'
+    }
 
     const { versionType, customVersion, silence } = this.options
     let version = ''
-    if (versionType === 'custom')
+    if (versionType === 'custom') {
       version = getVersion(versionType, customVersion!)
-    else
+    }
+    else {
       version = getVersion(versionType!)
+    }
+      
 
     compiler.hooks.emit.tap(pluginName, (compilation: Compilation) => {
       // const outputPath = compiler.outputPath

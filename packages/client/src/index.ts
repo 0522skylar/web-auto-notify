@@ -16,12 +16,12 @@ import './index.css'
 declare global {
   interface Window {
     /** version number */
-    pluginWebUpdateNotice_version: string;
+    webAutoNotify_version: string;
     /**
      * don't call this function in manual。
      */
     __checkUpdateSetup__: (options: Options) => void;
-    pluginWebUpdateNotice_: {
+    webAutoNotify_: {
       locale?: string;
       currentVersion?: string | undefined;
       /**
@@ -48,7 +48,7 @@ declare global {
     };
   }
   interface GlobalEventHandlersEventMap {
-    plugin_web_update_notice: CustomEvent<{ version: string; options: Options }>;
+    plugin_web_auto_notify: CustomEvent<{ version: string; options: Options }>;
   }
 }
 
@@ -76,14 +76,6 @@ function limit(fn: any, delay: number) {
   };
 }
 
-/**
- * It reloads the current page without using the browser cache
- */
-// function reloadPageWithoutCache() {
-//   const url = new URL(window.location.href)
-//   url.searchParams.set('__time__', Date.now().toString())
-//   window.location.replace(url.href)
-// }
 
 /**
  * querySelector takes a string and returns an element.
@@ -94,13 +86,13 @@ function querySelector(selector: string) {
   return document.querySelector(selector);
 }
 
-window.pluginWebUpdateNotice_ = {
+window.webAutoNotify_ = {
   currentVersion: undefined,
   checkUpdate: () => {},
   dismissUpdate,
   closeNotification,
   setLocale: (locale: string) => {
-    window.pluginWebUpdateNotice_.locale = locale;
+    window.webAutoNotify_.locale = locale;
     currentLocale = locale;
   }
 };
@@ -134,10 +126,10 @@ function __checkUpdateSetup__(options: Options) {
         if (silence) return;
         latestVersion = versionFromServer;
         if (isFirstFetch) {
-          window.pluginWebUpdateNotice_.currentVersion = latestVersion;
+          window.webAutoNotify_.currentVersion = latestVersion;
           isFirstFetch = false;
         }
-        if (window.pluginWebUpdateNotice_.currentVersion !== versionFromServer) {
+        if (window.webAutoNotify_.currentVersion !== versionFromServer) {
           // dispatch custom event
           document.body.dispatchEvent(
             new CustomEvent(CUSTOM_UPDATE_EVENT_NAME, {
@@ -148,7 +140,7 @@ function __checkUpdateSetup__(options: Options) {
               bubbles: true
             })
           );
-          window.pluginWebUpdateNotice_.currentVersion = latestVersion;
+          window.webAutoNotify_.currentVersion = latestVersion;
           const dismiss =
             localStorage.getItem(`${LOCAL_STORAGE_PREFIX}${versionFromServer}`) === "true";
           if (!hasShowSystemUpdateNotice && !hiddenDefaultNotification && !dismiss) {
@@ -159,7 +151,7 @@ function __checkUpdateSetup__(options: Options) {
         }
       })
       .catch(err => {
-        console.error("[pluginWebUpdateNotice] Failed to check system update", err);
+        console.error("[webAutoNotify] Failed to check system update", err);
       });
   };
 
@@ -178,7 +170,7 @@ function __checkUpdateSetup__(options: Options) {
 
   const limitCheckSystemUpdate = limit(checkSystemUpdate, 5000);
 
-  window.pluginWebUpdateNotice_.checkUpdate = limitCheckSystemUpdate;
+  window.webAutoNotify_.checkUpdate = limitCheckSystemUpdate;
 
   // when page visibility change, check system update
   window.addEventListener("visibilitychange", () => {
@@ -216,7 +208,7 @@ window.__checkUpdateSetup__ = __checkUpdateSetup__;
  */
 function closeNotification() {
   hasShowSystemUpdateNotice = false;
-  querySelector(`.${NOTIFICATION_ANCHOR_CLASS_NAME} .plugin-web-update-notice`)?.remove();
+  querySelector(`.${NOTIFICATION_ANCHOR_CLASS_NAME} .plugin-web-auto-notify`)?.remove();
 }
 
 /**
@@ -239,7 +231,7 @@ function bindBtnEvent() {
   // bind refresh button click event, click to refresh page
   const refreshBtn = querySelector(`.${NOTIFICATION_REFRESH_BTN_CLASS_NAME}`);
   refreshBtn?.addEventListener("click", () => {
-    const { onClickRefresh } = window.pluginWebUpdateNotice_;
+    const { onClickRefresh } = window.webAutoNotify_;
     if (onClickRefresh) {
       onClickRefresh(latestVersion);
       return;
@@ -250,7 +242,7 @@ function bindBtnEvent() {
   // bind dismiss button click event, click to hide notification
   const dismissBtn = querySelector(`.${NOTIFICATION_DISMISS_BTN_CLASS_NAME}`);
   dismissBtn?.addEventListener("click", () => {
-    const { onClickDismiss } = window.pluginWebUpdateNotice_;
+    const { onClickDismiss } = window.webAutoNotify_;
     if (onClickDismiss) {
       onClickDismiss(latestVersion);
       return;
@@ -291,7 +283,7 @@ function showNotification(options: Options) {
     const localeData = Object.assign({}, presetLocaleData, localeData_);
     if (!currentLocale) {
       currentLocale = locale;
-      window.pluginWebUpdateNotice_.locale = locale;
+      window.webAutoNotify_.locale = locale;
     }
 
     const notificationWrap = document.createElement("div");
@@ -311,21 +303,21 @@ function showNotification(options: Options) {
         getLocaleText(currentLocale, "dismissButtonText", localeData);
       const dismissButtonHtml = hiddenDismissButton
         ? ""
-        : `<a class="plugin-web-update-notice-btn plugin-web-update-notice-dismiss-btn" style="color:${secondaryColor}">${dismissButtonText}</a>`;
+        : `<a class="plugin-web-auto-notify-btn plugin-web-auto-notify-dismiss-btn" style="color:${secondaryColor}">${dismissButtonText}</a>`;
 
-      notificationWrap.classList.add("plugin-web-update-notice");
+      notificationWrap.classList.add("plugin-web-auto-notify");
       notificationWrap.style.cssText = `${NOTIFICATION_POSITION_MAP[placement]}`;
       notificationInnerHTML = `
-    <div class="plugin-web-update-notice-content" data-cy="notification-content">
-      <div class="plugin-web-update-notice-content-title">
+    <div class="plugin-web-auto-notify-content" data-cy="notification-content">
+      <div class="plugin-web-auto-notify-content-title">
         ${title}
       </div>
-      <div class="plugin-web-update-notice-content-desc">
+      <div class="plugin-web-auto-notify-content-desc">
         ${description}
       </div>
-      <div class="plugin-web-update-notice-tools">
+      <div class="plugin-web-auto-notify-tools">
         ${dismissButtonHtml}
-        <a class="plugin-web-update-notice-btn plugin-web-update-notice-refresh-btn" style="color:${primaryColor}">
+        <a class="plugin-web-auto-notify-btn plugin-web-auto-notify-refresh-btn" style="color:${primaryColor}">
           ${buttonText}
         </a>
       </div>
@@ -337,7 +329,7 @@ function showNotification(options: Options) {
 
     bindBtnEvent();
   } catch (err) {
-    console.error("[pluginWebUpdateNotice] Failed to show notification", err);
+    console.error("[webAutoNotify] Failed to show notification", err);
   }
 }
 

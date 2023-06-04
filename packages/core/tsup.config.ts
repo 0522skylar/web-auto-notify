@@ -1,5 +1,4 @@
 import { defineConfig } from 'tsup'
-import { INJECT_SCRIPT_FILE_NAME } from './src/constans'
 
 export default defineConfig((options) => { // The options here is derived from CLI flags.
   return {

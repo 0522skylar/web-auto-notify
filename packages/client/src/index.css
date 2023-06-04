@@ -1,10 +1,10 @@
-.plugin-web-update-notice {
+.plugin-web-auto-notify {
   position: fixed;
   user-select: none;
   z-index: 99999;
 }
 
-.plugin-web-update-notice-content {
+.plugin-web-auto-notify-content {
   background-color: #ef404f;
   border-radius: 4px;
   color: #fff;
@@ -14,22 +14,22 @@
   width: 280px;
 }
 
-.plugin-web-update-notice-content-title {
+.plugin-web-auto-notify-content-title {
   font-weight: 700;
   margin-bottom: 4px;
   font-size: 14px;
   line-height: 24px;
 }
 
-.plugin-web-update-notice-content-desc {
+.plugin-web-auto-notify-content-desc {
   font-size: 13px;
   line-height: 20px;
 }
-.plugin-web-update-notice-tools {
+.plugin-web-auto-notify-tools {
   margin-top: 4px;
   text-align: right;
 }
-.plugin-web-update-notice-btn {
+.plugin-web-auto-notify-btn {
   padding: 3px 8px;
   line-height: 1;
   border-radius: 4px;
@@ -37,12 +37,12 @@
   cursor: pointer;
   font-size: 14px;
 }
-.plugin-web-update-notice-btn:hover {
+.plugin-web-auto-notify-btn:hover {
   background-color: rgba(64, 87, 109, 0.1);
 }
-.plugin-web-update-notice-refresh-btn {
+.plugin-web-auto-notify-refresh-btn {
   color: #1677ff;
 }
-.plugin-web-update-notice-dismiss-btn {
+.plugin-web-auto-notify-dismiss-btn {
   color: #f5f7fa;
 }

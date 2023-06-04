@@ -8,7 +8,7 @@ build构建时，保存最新的git commitId值作为版本号，保存到一个
 
 将版本号同静态资源一样保存起来，方便客户端去读取最新的版本号
 
-具体使用，请查看[client](./packages/webpack-plugin/README.md)
+具体使用，请查看[webpack-plugin](./packages/webpack-plugin/README.md)
 
 ## client
 
